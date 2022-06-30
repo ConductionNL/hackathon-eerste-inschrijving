@@ -35,7 +35,7 @@ export const HasLivedInNlUntilFormStep: React.FC<FirstRegistrationStepProps> = (
   };
 
   const onSubmit = (data: any): void => {
-    setFormData({ ...formData, hasLivedInNlUntil: data.hasLivedInNlUntil });
+    handleSetFormData(data)
     setNextStep();
   };
 

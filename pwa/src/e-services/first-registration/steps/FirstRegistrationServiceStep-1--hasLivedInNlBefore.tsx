@@ -34,8 +34,8 @@ export const HasLivedInNlBeforeFormStep: React.FC<FirstRegistrationStepProps> = 
   return (
     <FormStepTemplate title={t("Have you lived in the Netherlands before?")}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputRadio name="hasLivedInNlBefore" value="1" label={t("Yes")} {...{register, errors}} />
-        <InputRadio name="hasLivedInNlBefore" value="0" label={t("No")} {...{register, errors}} />
+        <InputRadio name="hasLivedInNlBefore" value="1" label={t("Yes")} {...{register, errors}} validation={{ required: true }} />
+        <InputRadio name="hasLivedInNlBefore" value="0" label={t("No")} {...{register, errors}} validation={{ required: true }} />
 
         <button type="submit">
           <Link icon={<ArrowRightIcon/>} iconAlign="start">
