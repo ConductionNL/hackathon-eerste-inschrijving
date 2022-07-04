@@ -10,10 +10,10 @@ import { TFirstRegistrationFormServiceSteps } from "../FirstRegistrationForm";
 
 interface UntilWhichDateWillYouStayInNlStepProps {
   setNextStep: () => void;
-  handleSetStep: React.Dispatch<React.SetStateAction<TFirstRegistrationFormServiceSteps>>;
+  setPreviousStep: () => void;
 }
 
-export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouStayInNlStepProps> = ({ setNextStep, handleSetStep }) => {
+export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouStayInNlStepProps> = ({ setNextStep, setPreviousStep }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = React.useContext(FirstRegistrationContext);
 
@@ -31,7 +31,7 @@ export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouSt
 
   const handleSetPreviousStep = () => {
     handleSetFormData(getValues());
-    handleSetStep(formData.hasLivedInNlBefore === "0" ? "hasLivedInNlBefore" : "hasLivedInNlUntil");
+    setPreviousStep();
   };
 
   const onSubmit = (data: any): void => {

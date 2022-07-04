@@ -6,14 +6,13 @@ import { InputDate } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
-import { TFirstRegistrationFormServiceSteps } from "../FirstRegistrationForm";
 
 interface HasLivedInNlUntilFormStepProps {
   setNextStep: (hasLivedInNlUntil: string) => void;
-  handleSetStep: React.Dispatch<React.SetStateAction<TFirstRegistrationFormServiceSteps>>;
+  setPreviousStep: () => string | undefined;
 }
 
-export const HasLivedInNlUntilFormStep: React.FC<HasLivedInNlUntilFormStepProps> = ({ setNextStep, handleSetStep }) => {
+export const HasLivedInNlUntilFormStep: React.FC<HasLivedInNlUntilFormStepProps> = ({ setNextStep, setPreviousStep }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = React.useContext(FirstRegistrationContext);
 
@@ -31,7 +30,7 @@ export const HasLivedInNlUntilFormStep: React.FC<HasLivedInNlUntilFormStepProps>
 
   const handleSetPreviousStep = () => {
     handleSetFormData(getValues());
-    handleSetStep("hasLivedInNlBefore");
+    setPreviousStep();
   };
 
   const onSubmit = (data: any): void => {
