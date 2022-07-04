@@ -1,8 +1,10 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
+import FirstRegistrationClient from "./services/firstRegistrationClient";
 
 // Services
 import Login from "./services/login";
 import Me from "./services/me";
+import Pet from "./services/pet";
 
 // Resources
 // import Example from "./resources/example";
@@ -80,13 +82,21 @@ export default class APIService {
   public get Me(): Me {
     return new Me(this.BaseClient);
   }
+
+  public get Pet(): Pet {
+    return new Pet(this.LoginClient);
+  }
+
+  public get FirstRegistrationClient(): FirstRegistrationClient {
+    return new FirstRegistrationClient(this.LoginClient);
+  }
 }
 
 export const Send = (
   instance: AxiosInstance,
   method: "GET" | "POST" | "PUT" | "DELETE",
   endpoint: string,
-  payload?: JSON,
+  payload?: Object,
 ): Promise<AxiosResponse> => {
   const _payload = JSON.stringify(payload);
 
