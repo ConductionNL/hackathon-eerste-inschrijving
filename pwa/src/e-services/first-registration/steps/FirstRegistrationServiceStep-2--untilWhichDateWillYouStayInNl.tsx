@@ -8,12 +8,12 @@ import { FormStepTemplate } from "../../../templates/templateParts/formStep/Form
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 import { TFirstRegistrationFormServiceSteps } from "../FirstRegistrationForm";
 
-interface HasLivedInNlUntilFormStepProps {
-  setNextStep: (hasLivedInNlUntil: string) => void;
+interface UntilWhichDateWillYouStayInNlStepProps {
+  setNextStep: () => void;
   handleSetStep: React.Dispatch<React.SetStateAction<TFirstRegistrationFormServiceSteps>>;
 }
 
-export const HasLivedInNlUntilFormStep: React.FC<HasLivedInNlUntilFormStepProps> = ({ setNextStep, handleSetStep }) => {
+export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouStayInNlStepProps> = ({ setNextStep, handleSetStep }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = React.useContext(FirstRegistrationContext);
 
@@ -26,29 +26,29 @@ export const HasLivedInNlUntilFormStep: React.FC<HasLivedInNlUntilFormStepProps>
   } = useForm();
 
   React.useEffect(() => {
-    setValue("hasLivedInNlUntil", formData.hasLivedInNlUntil);
+    setValue("untilWhichDateWillYouStayInNl", formData.untilWhichDateWillYouStayInNl);
   }, [formData]);
 
   const handleSetPreviousStep = () => {
     handleSetFormData(getValues());
-    handleSetStep("hasLivedInNlBefore");
+    handleSetStep(formData.hasLivedInNlBefore === "0" ? "hasLivedInNlBefore" : "hasLivedInNlUntil");
   };
 
   const onSubmit = (data: any): void => {
     handleSetFormData(data)
-    setNextStep(data.hasLivedInNlUntil);
+    setNextStep();
   };
 
-  const handleSetFormData = (data: any) => {
-    setFormData({ ...formData, hasLivedInNlUntil: data.hasLivedInNlUntil });
+  const handleSetFormData = ({ untilWhichDateWillYouStayInNl }: any) => {
+    setFormData({ ...formData, untilWhichDateWillYouStayInNl });
   };
 
   return (
-    <FormStepTemplate title={t("Until which date have you lived in the Netherlands?")} setPreviousStep={handleSetPreviousStep}>
+    <FormStepTemplate title={t("Until which date will you live in the Netherlands?")} setPreviousStep={handleSetPreviousStep}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFieldInput>
-          <FormFieldLabel htmlFor="hasLivedInNlUntil">{t("Moving date")}</FormFieldLabel>
-          <InputDate name="hasLivedInNlUntil" {...{ register, errors }} validation={{ required: true }} />
+          <FormFieldLabel htmlFor="untilWhichDateWillYouStayInNl">{t("Date")}</FormFieldLabel>
+          <InputDate name="untilWhichDateWillYouStayInNl" {...{ register, errors }} validation={{ required: true }} />
         </FormFieldInput>
 
         <button type="submit">

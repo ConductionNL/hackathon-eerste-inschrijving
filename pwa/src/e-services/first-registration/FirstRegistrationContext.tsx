@@ -3,6 +3,7 @@ import * as React from "react";
 export interface IFirstRegistrationData {
   hasLivedInNlBefore: string;
   hasLivedInNlUntil: string;
+  untilWhichDateWillYouStayInNl: string;
 }
 
 export const defaultFirstRegistrationData = {} as IFirstRegistrationData;

@@ -7,11 +7,11 @@ import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 
-interface FirstRegistrationStepProps {
+interface HasLivedInNlBeforeFormStepProps {
   setNextStep: (hasLivedInNlBefore: string) => void;
 }
 
-export const HasLivedInNlBeforeFormStep: React.FC<FirstRegistrationStepProps> = ({setNextStep}) => {
+export const HasLivedInNlBeforeFormStep: React.FC<HasLivedInNlBeforeFormStepProps> = ({setNextStep}) => {
   const {t} = useTranslation();
   const [formData, setFormData] = React.useContext(FirstRegistrationContext);
 

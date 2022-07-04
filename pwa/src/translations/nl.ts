@@ -27,4 +27,6 @@ export const nl = {
   "Has lived in the Netherlands before": "Heeft eerder in Nederland gewoond",
   "Has lived in the Netherlands until": "Heeft in Nederland gewoond tot",
   "Confirm the first registration form": "Bevestig hier het eerste inschrijving formulier",
+  "Date": "Datum",
+  "Until which date will you live in the Netherlands?": "Tot welke datum blijft u in Nederland?"
 };
