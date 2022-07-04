@@ -17,11 +17,6 @@
   color: var(--denhaag-color-white) !important;
 }
 
-.subTitle {
-  font-weight: 100;
-  color: var(--denhaag-color-white);
-}
-
 .secondaryNavContainer {
   display: flex;
   justify-content: flex-end;

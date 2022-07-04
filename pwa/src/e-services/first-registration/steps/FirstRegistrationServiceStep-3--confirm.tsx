@@ -32,7 +32,7 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
   return (
     <EndServiceTemplate
       collectedData={getCollectedData()}
-      title={t("Confirm your move")}
+      title={t("Confirm the first registration form")}
       handleSubmit={onSubmit}
       {...{ setPreviousStep }}
     />
