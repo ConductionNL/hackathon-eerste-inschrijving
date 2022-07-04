@@ -9,7 +9,7 @@ import { navigate } from "gatsby";
 import {useFirstRegistration} from "../../../hooks/firstRegistration";
 
 interface MovingStepProps {
-  setPreviousStep: () => void;
+  setPreviousStep: (hasLivedInNlBefore: string) => void;
 }
 
 export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) => {
@@ -61,7 +61,7 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
       collectedData={getCollectedData()}
       title={t("Confirm the first registration form")}
       handleSubmit={onSubmit}
-      {...{ setPreviousStep }}
+      setPreviousStep={() => setPreviousStep(formData.hasLivedInNlBefore)}
     />
   );
 };
