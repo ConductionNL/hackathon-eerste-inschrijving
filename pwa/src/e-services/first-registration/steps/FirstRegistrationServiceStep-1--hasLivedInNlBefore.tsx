@@ -8,7 +8,7 @@ import { FormStepTemplate } from "../../../templates/templateParts/formStep/Form
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 
 interface FirstRegistrationStepProps {
-  setNextStep: () => void;
+  setNextStep: (hasLivedInNlBefore: boolean) => void;
 }
 
 export const HasLivedInNlBeforeFormStep: React.FC<FirstRegistrationStepProps> = ({setNextStep}) => {
@@ -28,7 +28,7 @@ export const HasLivedInNlBeforeFormStep: React.FC<FirstRegistrationStepProps> = 
 
   const onSubmit = (data: any): void => {
     setFormData({...formData, hasLivedInNlBefore: data.hasLivedInNlBefore});
-    setNextStep();
+    setNextStep(data.hasLivedInNlBefore === "1");
   };
 
   return (

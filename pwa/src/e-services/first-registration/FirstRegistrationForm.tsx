@@ -23,7 +23,7 @@ interface FirstRegistrationServiceFormStepProps {
 const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormStepProps> = ({ step, setStep }) => {
   switch (step) {
     case "hasLivedInNlBefore":
-      return <HasLivedInNlBeforeFormStep setNextStep={() => setStep("hasLivedInNlUntil")} />;
+      return <HasLivedInNlBeforeFormStep setNextStep={(hasLivedInNlBefore) => setStep(hasLivedInNlBefore === true ? "hasLivedInNlUntil" : "confirm")} />;
 
     case "hasLivedInNlUntil":
       return <HasLivedInNlUntilFormStep setNextStep={() => setStep("confirm")} handleSetStep={setStep} />;
