@@ -9,7 +9,7 @@ import { FirstRegistrationContext } from "../FirstRegistrationContext";
 import { TFirstRegistrationFormServiceSteps } from "../FirstRegistrationForm";
 
 interface FirstRegistrationStepProps {
-  setNextStep: () => void;
+  setNextStep: (hasLivedInNlUntil: string) => void;
   handleSetStep: React.Dispatch<React.SetStateAction<TFirstRegistrationFormServiceSteps>>;
 }
 
@@ -36,7 +36,7 @@ export const HasLivedInNlUntilFormStep: React.FC<FirstRegistrationStepProps> = (
 
   const onSubmit = (data: any): void => {
     handleSetFormData(data)
-    setNextStep();
+    setNextStep(data.hasLivedInNlUntil);
   };
 
   const handleSetFormData = (data: any) => {
