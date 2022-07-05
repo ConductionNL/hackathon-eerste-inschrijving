@@ -68,13 +68,13 @@ const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormSte
 
     case "whereYouRegisteredInNlAntilles":
       return <WhereYouRegisteredInNlAntillesStep
-        setNextStep={(whereYouRegisteredInNlAntilles) => whereYouRegisteredInNlAntilles === "1" ? setNextStep("canYouUploadMovingDocument") : setNextStep("confirm")}
+        setNextStep={(whereYouRegisteredInNlAntilles) => whereYouRegisteredInNlAntilles === "1" ? setNextStep("canYouUploadMovingDocument") : setNextStep("idDocumentInformation")}
         setPreviousStep={setPreviousStep}
       />;
 
     case "canYouUploadMovingDocument":
       return <CanYouUploadMovingDocumentStep
-        setNextStep={() => setNextStep("confirm")}
+        setNextStep={() => setNextStep("idDocumentInformation")}
         setPreviousStep={setPreviousStep}
       />;
 
