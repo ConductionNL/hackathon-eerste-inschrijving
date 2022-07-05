@@ -12,14 +12,11 @@ export const nl = {
   Username: "Gebruikersnaam",
   Password: "Wachtwoord",
   Send: "Verzenden",
+  Start: "Start",
   "First registration": "Eerste inschrijving",
   "Have you lived in the Netherlands before?": "Heeft u eerder in Nederland gewoond?",
   "Until which date have you lived in the Netherlands?": "Tot welke datum heeft u in Nederland gewoond?",
   "Moving date": "Verhuisdatum",
-  "Yes": "Ja",
-  "No": "Nee",
-  "Previous step": "Vorige stap",
-  "Next step": "Volgende stap",
   "Confirm": "Bevestig",
   "Welcome at the first registration e-service. Click on the start button below to start the process.":
     "Welkom bij de e-dienst eerste inschrijving. Klik op de start knop hieronder om het proces te starten.",
@@ -28,5 +25,9 @@ export const nl = {
   "Has lived in the Netherlands until": "Heeft in Nederland gewoond tot",
   "Confirm the first registration form": "Bevestig hier het eerste inschrijving formulier",
   "Date": "Datum",
-  "Until which date will you live in the Netherlands?": "Tot welke datum blijft u in Nederland?"
+  Yes: "Ja",
+  No: "Nee",
+  "Next step": "Volgende stap",
+  "Previous step": "Vorige stap",
+  "Until which date have you lived in the Netherlands?": "Tot wanneer heeft u in Nederland gewoond?",
 };
