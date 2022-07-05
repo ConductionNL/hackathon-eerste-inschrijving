@@ -4,11 +4,12 @@ import {
   HasLivedInNlUntilFormStep,
  IdDocumentInformationStep, PersonalInformationStep, ConfirmFormStep,
   UntilWhichDateWillYouStayInNlStep,
-  WhereYouRegisteredInNlAntillesStep
+  WhereYouRegisteredInNlAntillesStep,
+  CanYouUploadMovingDocumentStep
 } from "./steps";
 import { IFirstRegistrationData, FirstRegistrationServiceProvider, defaultFirstRegistrationData } from "./FirstRegistrationContext";
 
-export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "whereYouRegisteredInNlAntilles" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission" | "endInfoRni";
+export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "whereYouRegisteredInNlAntilles" | "canYouUploadMovingDocument" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission" | "endInfoRni";
 
 export const FirstRegistrationForm: React.FC = () => {
   const [step, setStep] = React.useState<TFirstRegistrationFormServiceSteps>("hasLivedInNlBefore");
@@ -67,7 +68,13 @@ const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormSte
 
     case "whereYouRegisteredInNlAntilles":
       return <WhereYouRegisteredInNlAntillesStep
-        setNextStep={(whereYouRegisteredInNlAntilles) => setNextStep("idDocumentInformation")}
+        setNextStep={(whereYouRegisteredInNlAntilles) => whereYouRegisteredInNlAntilles === "1" ? setNextStep("canYouUploadMovingDocument") : setNextStep("confirm")}
+        setPreviousStep={setPreviousStep}
+      />;
+
+    case "canYouUploadMovingDocument":
+      return <CanYouUploadMovingDocumentStep
+        setNextStep={() => setNextStep("confirm")}
         setPreviousStep={setPreviousStep}
       />;
 

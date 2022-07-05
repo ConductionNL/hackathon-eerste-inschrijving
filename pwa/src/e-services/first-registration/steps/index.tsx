@@ -5,5 +5,6 @@ import { WhereYouRegisteredInNlAntillesStep } from "./FirstRegistrationServiceSt
 import { IdDocumentInformationStep } from "./FirstRegistrationServiceStep-4--idDocumentInformation";
 import { PersonalInformationStep } from "./FirstRegistrationServiceStep-5--PersonalInformation";
 import { ConfirmFormStep } from "./FirstRegistrationServiceStep-6--confirm";
+import { CanYouUploadMovingDocumentStep } from "./FirstRegistrationServiceStep-3a--canYouUploadMovingDocument";
 
-export { HasLivedInNlBeforeFormStep, HasLivedInNlUntilFormStep, UntilWhichDateWillYouStayInNlStep, WhereYouRegisteredInNlAntillesStep, IdDocumentInformationStep, PersonalInformationStep, ConfirmFormStep };
+export { HasLivedInNlBeforeFormStep, HasLivedInNlUntilFormStep, UntilWhichDateWillYouStayInNlStep, WhereYouRegisteredInNlAntillesStep, CanYouUploadMovingDocumentStep, IdDocumentInformationStep, PersonalInformationStep, ConfirmFormStep };
