@@ -3,14 +3,9 @@ import { Button, Heading1 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import {usePet} from "../../hooks/pet";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
-
-  const pets = usePet().getPets();
-
-  console.log(pets.data);
 
   return (
     <Container>

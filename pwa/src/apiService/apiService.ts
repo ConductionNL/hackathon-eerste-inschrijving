@@ -4,7 +4,6 @@ import FirstRegistrationClient from "./services/firstRegistrationClient";
 // Services
 import Login from "./services/login";
 import Me from "./services/me";
-import Pet from "./services/pet";
 
 // Resources
 // import Example from "./resources/example";
@@ -81,10 +80,6 @@ export default class APIService {
 
   public get Me(): Me {
     return new Me(this.BaseClient);
-  }
-
-  public get Pet(): Pet {
-    return new Pet(this.LoginClient);
   }
 
   public get FirstRegistrationClient(): FirstRegistrationClient {
