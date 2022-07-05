@@ -24,9 +24,11 @@ export const CanYouUploadMovingDocumentStep: React.FC<CanYouUploadMovingDocument
     formState: { errors },
   } = useForm();
 
-  // React.useEffect(() => {
-  //   // setValue("movingDocument", formData.movingDocument);
-  // }, [formData]);
+  React.useEffect(() => {
+    // TODO: WARNING: for some reason the line below makes the FileList become empty in the FormData..
+    //  Removing it will keep the FileList filled, but will result in an unfilled file field after stepping back to this step using the "Previous step" button.
+    // setValue("movingDocument", formData.movingDocument);
+  }, [formData]);
 
   const handleSetPreviousStep = () => {
     handleSetFormData(getValues());
@@ -34,13 +36,13 @@ export const CanYouUploadMovingDocumentStep: React.FC<CanYouUploadMovingDocument
   };
 
   const onSubmit = (data: any): void => {
-    handleSetFormData(data)
+    console.log(data);
+    handleSetFormData(data);
     setNextStep();
   };
 
   const handleSetFormData = ({ movingDocument }: any) => {
-    console.log(movingDocument);
-    setFormData({ ...formData });
+    setFormData({ ...formData, movingDocument });
   };
 
   return (
