@@ -15,7 +15,6 @@ export const FirstRegistrationForm: React.FC = () => {
   }
   const setPreviousStep = () => {
     const lastVisitedStep = visitedSteps.pop();
-    console.log(lastVisitedStep);
 
     setStep((lastVisitedStep ? lastVisitedStep : "hasLivedInNlBefore") as TFirstRegistrationFormServiceSteps);
     setVisitedSteps(visitedSteps.slice(-1));
