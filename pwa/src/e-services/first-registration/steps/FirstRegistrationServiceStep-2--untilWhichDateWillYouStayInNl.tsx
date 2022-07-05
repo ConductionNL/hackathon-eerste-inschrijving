@@ -8,7 +8,7 @@ import { FormStepTemplate } from "../../../templates/templateParts/formStep/Form
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 
 interface UntilWhichDateWillYouStayInNlStepProps {
-  setNextStep: () => void;
+  setNextStep: (untilWhichDateWillYouStayInNl: string) => void;
   setPreviousStep: () => void;
 }
 
@@ -34,8 +34,8 @@ export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouSt
   };
 
   const onSubmit = (data: any): void => {
-    handleSetFormData(data)
-    setNextStep();
+    setFormData({...formData, untilWhichDateWillYouStayInNl: data.untilWhichDateWillYouStayInNl});
+    setNextStep(data.untilWhichDateWillYouStayInNl);
   };
 
   const handleSetFormData = ({ untilWhichDateWillYouStayInNl }: any) => {

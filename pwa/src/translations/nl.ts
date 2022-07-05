@@ -56,5 +56,6 @@ export const nl = {
   Female: "Vrouw",
   Other: "Anders",
   "Phone number": "Telefoonnummer",
-  "E-mail address": "E-mailadres"
+  "E-mail address": "E-mailadres",
+  "Where you recently registered as resident in the Netherlands Antilles?": "Was u laatstelijk als ingezetene ingeschreven op de Nederlandse Antillen?"
 };

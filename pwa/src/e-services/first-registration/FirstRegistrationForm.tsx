@@ -1,8 +1,14 @@
 import * as React from "react";
-import { HasLivedInNlBeforeFormStep, HasLivedInNlUntilFormStep, IdDocumentInformationStep, PersonalInformationStep, ConfirmFormStep, UntilWhichDateWillYouStayInNlStep } from "./steps";
+import {
+  HasLivedInNlBeforeFormStep,
+  HasLivedInNlUntilFormStep,
+ IdDocumentInformationStep, PersonalInformationStep, ConfirmFormStep,
+  UntilWhichDateWillYouStayInNlStep,
+  WhereYouRegisteredInNlAntillesStep
+} from "./steps";
 import { IFirstRegistrationData, FirstRegistrationServiceProvider, defaultFirstRegistrationData } from "./FirstRegistrationContext";
 
-export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission";
+export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "whereYouRegisteredInNlAntilles" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission" | "endInfoRni";
 
 export const FirstRegistrationForm: React.FC = () => {
   const [step, setStep] = React.useState<TFirstRegistrationFormServiceSteps>("hasLivedInNlBefore");
@@ -50,7 +56,18 @@ const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormSte
 
     case "untilWhichDateWillYouStayInNl":
       return <UntilWhichDateWillYouStayInNlStep
-        setNextStep={() => setNextStep("idDocumentInformation")}
+        setNextStep={(untilWhichDateWillYouStayInNl) => {
+          const date4MonthsFromNow = new Date()
+          date4MonthsFromNow.setMonth(date4MonthsFromNow.getMonth() + 4);
+
+          return new Date(untilWhichDateWillYouStayInNl) > date4MonthsFromNow ? setNextStep("whereYouRegisteredInNlAntilles") : setNextStep("endInfoRni")
+        }}
+        setPreviousStep={setPreviousStep}
+      />;
+
+    case "whereYouRegisteredInNlAntilles":
+      return <WhereYouRegisteredInNlAntillesStep
+        setNextStep={(whereYouRegisteredInNlAntilles) => setNextStep("idDocumentInformation")}
         setPreviousStep={setPreviousStep}
       />;
 
@@ -73,5 +90,8 @@ const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormSte
 
     case "endResubmission":
       return <>Het proces eindigt hier, het gaat namelijk om een herbevestiging vanuit het buitenland, niet een eerste inschrijving</>;
+
+    case "endInfoRni":
+      return <>Het proces eindigt hier, er dient meer informatie verstrekt te worden over de inschrijving RNI</>;
   }
 };
