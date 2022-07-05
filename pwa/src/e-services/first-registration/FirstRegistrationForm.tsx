@@ -1,8 +1,8 @@
 import * as React from "react";
-import { HasLivedInNlBeforeFormStep, HasLivedInNlUntilFormStep, ConfirmFormStep, UntilWhichDateWillYouStayInNlStep } from "./steps";
+import { HasLivedInNlBeforeFormStep, HasLivedInNlUntilFormStep, IdDocumentInformationStep, PersonalInformationStep, ConfirmFormStep, UntilWhichDateWillYouStayInNlStep } from "./steps";
 import { IFirstRegistrationData, FirstRegistrationServiceProvider, defaultFirstRegistrationData } from "./FirstRegistrationContext";
 
-export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "confirm" | "endResubmission";
+export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission";
 
 export const FirstRegistrationForm: React.FC = () => {
   const [step, setStep] = React.useState<TFirstRegistrationFormServiceSteps>("hasLivedInNlBefore");
@@ -50,6 +50,18 @@ const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormSte
 
     case "untilWhichDateWillYouStayInNl":
       return <UntilWhichDateWillYouStayInNlStep
+        setNextStep={() => setNextStep("idDocumentInformation")}
+        setPreviousStep={setPreviousStep}
+      />;
+
+    case "idDocumentInformation":
+      return <IdDocumentInformationStep
+        setNextStep={() => setNextStep("personalInformation")}
+        setPreviousStep={setPreviousStep}
+      />;
+
+    case "personalInformation":
+      return <PersonalInformationStep
         setNextStep={() => setNextStep("confirm")}
         setPreviousStep={setPreviousStep}
       />;
