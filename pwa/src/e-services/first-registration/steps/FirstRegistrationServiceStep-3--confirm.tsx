@@ -6,18 +6,45 @@ import {
   ICollectedData,
 } from "../../../templates/templateParts/selfServices/endService/EndServiceTemplate";
 import { navigate } from "gatsby";
+import {useFirstRegistration} from "../../../hooks/firstRegistration";
 
 interface MovingStepProps {
   setPreviousStep: () => void;
 }
 
 export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) => {
+  const firstRegistrationClient = useFirstRegistration();
   const { t } = useTranslation();
   const [formData] = React.useContext(FirstRegistrationContext);
 
+  const mutation = firstRegistrationClient.submitFirstRegistration(
+    {
+      documentType: 'passport',
+      documentIssueDate: '',
+      documentExpiryDate: '',
+      issueByInstancy: '',
+      foreignPersonalId: '12345',
+      surname: 'ten Laak',
+      previousSurname: '',
+      firstname: 'Jaap',
+      dateOfBirth: '20-11-2001',
+      birthplace: 'Leiden',
+      countryOfBirth: 'The Netherlands',
+      nationality: 'nl',
+      maritalStatus: 'married',
+      gender: 'male',
+      phoneNumber: '+31612345689',
+      emailAddress: 'k.deheer@simgroep.nl',
+    },
+    {
+      onSuccess: () => {
+        navigate("/my-cases");
+      },
+    }
+  );
+
   const onSubmit = (): void => {
-    // Todo: send data to gateway
-    navigate("/my-cases");
+    mutation.mutate();
   };
 
   const getCollectedData = (): ICollectedData[] => {
@@ -32,9 +59,9 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
   return (
     <EndServiceTemplate
       collectedData={getCollectedData()}
-      title={t("Confirm your move")}
+      title={t("Confirm the first registration form")}
       handleSubmit={onSubmit}
-      {...{ setPreviousStep }}
+      setPreviousStep={() => setPreviousStep()}
     />
   );
 };

@@ -8,12 +8,12 @@ import { FormStepTemplate } from "../../../templates/templateParts/formStep/Form
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 import { TFirstRegistrationFormServiceSteps } from "../FirstRegistrationForm";
 
-interface FirstRegistrationStepProps {
+interface UntilWhichDateWillYouStayInNlStepProps {
   setNextStep: () => void;
-  handleSetStep: React.Dispatch<React.SetStateAction<TFirstRegistrationFormServiceSteps>>;
+  setPreviousStep: () => void;
 }
 
-export const HasLivedInNlUntilFormStep: React.FC<FirstRegistrationStepProps> = ({ setNextStep, handleSetStep }) => {
+export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouStayInNlStepProps> = ({ setNextStep, setPreviousStep }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = React.useContext(FirstRegistrationContext);
 
@@ -26,12 +26,12 @@ export const HasLivedInNlUntilFormStep: React.FC<FirstRegistrationStepProps> = (
   } = useForm();
 
   React.useEffect(() => {
-    setValue("hasLivedInNlUntil", formData.hasLivedInNlUntil);
+    setValue("untilWhichDateWillYouStayInNl", formData.untilWhichDateWillYouStayInNl);
   }, [formData]);
 
   const handleSetPreviousStep = () => {
     handleSetFormData(getValues());
-    handleSetStep("hasLivedInNlBefore");
+    setPreviousStep();
   };
 
   const onSubmit = (data: any): void => {
@@ -39,16 +39,16 @@ export const HasLivedInNlUntilFormStep: React.FC<FirstRegistrationStepProps> = (
     setNextStep();
   };
 
-  const handleSetFormData = (data: any) => {
-    setFormData({ ...formData, hasLivedInNlUntil: data.hasLivedInNlUntil });
+  const handleSetFormData = ({ untilWhichDateWillYouStayInNl }: any) => {
+    setFormData({ ...formData, untilWhichDateWillYouStayInNl });
   };
 
   return (
-    <FormStepTemplate title={t("Until which date have you lived in the Netherlands?")} setPreviousStep={handleSetPreviousStep}>
+    <FormStepTemplate title={t("Until which date will you live in the Netherlands?")} setPreviousStep={handleSetPreviousStep}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFieldInput>
-          <FormFieldLabel htmlFor="hasLivedInNlUntil">{t("Moving date")}</FormFieldLabel>
-          <InputDate name="hasLivedInNlUntil" {...{ register, errors }} validation={{ required: true }} />
+          <FormFieldLabel htmlFor="untilWhichDateWillYouStayInNl">{t("Date")}</FormFieldLabel>
+          <InputDate name="untilWhichDateWillYouStayInNl" {...{ register, errors }} validation={{ required: true }} />
         </FormFieldInput>
 
         <button type="submit">
