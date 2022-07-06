@@ -17,6 +17,9 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
   const [formData] = React.useContext(FirstRegistrationContext);
   const firstRegistrationClient = useFirstRegistrationClient();
 
+  const fileUploadMutation = firstRegistrationClient.createZaakDocument({}, {
+    onSuccess: () => {}
+  })
   const mutation = firstRegistrationClient.createZaak(
     {},
     {
@@ -27,8 +30,11 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
     }
   );
 
-  const onSubmit = (): void => {
-    mutation.mutate();
+  const onSubmit = async () => {
+    const { id } = await mutation.mutateAsync();
+    if (formData.movingDocument) {
+      await fileUploadMutation.mutateAsync({zaakId: id, fileList: formData.movingDocument});
+    }
   };
 
   const getCollectedData = (): ICollectedData[] => {
