@@ -1,52 +1,35 @@
 import * as React from "react";
-import {useMutation} from "react-query";
+import { useMutation } from "react-query";
 import APIService from "../apiService/apiService";
 import APIContext from "../apiService/apiContext";
 
-export const useFirstRegistration = () => {
+export const useFirstRegistrationClient = () => {
   const API: APIService = React.useContext(APIContext);
 
-  const submitFirstRegistration = ({
-     documentType,
-     documentIssueDate,
-     documentExpiryDate,
-     issueByInstancy,
-     foreignPersonalId,
-     surname,
-     previousSurname,
-     firstname,
-     dateOfBirth,
-     birthplace,
-     countryOfBirth,
-     nationality,
-     maritalStatus,
-     gender,
-     phoneNumber,
-     emailAddress,
-   }: any, {onSuccess}: any) =>
-    useMutation<any, Error>(["first-registration"], () => API.FirstRegistrationClient.submitFirstRegistration({
-      documentType,
-      documentIssueDate,
-      documentExpiryDate,
-      issueByInstancy,
-      foreignPersonalId,
-      surname,
-      previousSurname,
-      firstname,
-      dateOfBirth,
-      birthplace,
-      countryOfBirth,
-      nationality,
-      maritalStatus,
-      gender,
-      phoneNumber,
-      emailAddress,
-    }), {
+  const createZaak = ({ }: any, { onSuccess }: any) =>
+    useMutation<any, Error>(["first-registration"], () => API.FirstRegistrationClient.createZaak({}), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+      onSuccess,
+    }
+    );
+
+  const createZaakEigenschap = ({}: any, { onSuccess }: any) =>
+    useMutation<any, Error>(["first-registration"], ({ zaakId, eigenschap, waarde, }: any) => API.FirstRegistrationClient.createZaakEigenschap(zaakId, eigenschap, waarde), {
       onError: (error) => {
         throw new Error(error.message);
       },
       onSuccess,
     });
 
-  return { submitFirstRegistration };
+  const createZaakDocument = ({ }: any, { onSuccess }: any) =>
+    useMutation<any, Error>(["first-registration-enkelvoudig-informatie-object"], ({ zaakId, fileList }: any) => API.FirstRegistrationClient.addZaakDocument(zaakId, fileList), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+      onSuccess,
+    });
+
+  return { createZaak, createZaakDocument, createZaakEigenschap };
 };
