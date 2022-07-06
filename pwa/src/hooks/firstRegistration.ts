@@ -12,7 +12,17 @@ export const useFirstRegistrationClient = () => {
         throw new Error(error.message);
       },
       onSuccess,
-    });
+    }
+  );
 
-  return { createZaak };
+  const createZaakEigenschap =  (zaakId: string, zaak: string, waarde: string, {onSuccess}: any) =>
+    useMutation<any, Error>(["first-registration"], () => API.FirstRegistrationClient.createZaakEigenschap(zaakId, zaak, waarde), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+      onSuccess,
+    }
+  );
+
+  return { createZaak, createZaakEigenschap };
 };
