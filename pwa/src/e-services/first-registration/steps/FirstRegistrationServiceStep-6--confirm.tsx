@@ -25,22 +25,53 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
     {
       onSuccess: ({ id }) => {
         console.log('Zaak ID: ' + id);
-        // navigate("/my-cases");
       },
     }
   );
 
   const onSubmit = async () => {
     const { id } = await mutation.mutateAsync();
-    if (formData.movingDocument) {
+    if (formData.movingDocument && formData.movingDocument.length > 0) {
       await fileUploadMutation.mutateAsync({zaakId: id, fileList: formData.movingDocument});
     }
+
+    navigate("/first-registration/success");
   };
 
   const getCollectedData = (): ICollectedData[] => {
+    const documentTypes = {
+      "passport": t("Passport"),
+      "id": t("ID"),
+    };
+    const maritalStatuses = {
+      "unmarried": t("Unmarried"),
+      "married": t("Married"),
+      "registeredPartnership": t("Registered partnership"),
+    };
+    const genders = {
+      "male": t("Male"),
+      "female": t("Female"),
+    };
+
     const collectedData: ICollectedData[] = [
-      { label: t("Has lived in the Netherlands before"), value: formData.hasLivedInNlBefore },
-      { label: t("Has lived in the Netherlands until"), value: formData.hasLivedInNlUntil },
+      { label: t("Document type"), value: documentTypes[formData.idDocumentInformation.documentType] },
+      { label: t("Document number"), value: formData.idDocumentInformation.documentNumber },
+      { label: t("Issue date of document"), value: formData.idDocumentInformation.documentIssueDate },
+      { label: t("Document is valid until"), value: formData.idDocumentInformation.documentExpiryDate },
+      { label: t("Which instancy provided the document?"), value: formData.idDocumentInformation.documentProvidedBy },
+      { label: t("Foreign ID number / personal number"), value: formData.idDocumentInformation.foreignIdNumber },
+
+      { label: t("Family name"), value: formData.personalInformation.familyName },
+      { label: t("Former family name"), value: formData.personalInformation.formerFamilyName },
+      { label: t("First name"), value: formData.personalInformation.firstName },
+      { label: t("Date of birth"), value: formData.personalInformation.dateOfBirth },
+      { label: t("Place of birth"), value: formData.personalInformation.placeOfBirth },
+      { label: t("Country of birth"), value: formData.personalInformation.countryOfBirth },
+      { label: t("Nationality"), value: formData.personalInformation.nationality },
+      { label: t("Marital status"), value: maritalStatuses[formData.personalInformation.maritalStatus] },
+      { label: t("Gender"), value: genders[formData.personalInformation.gender] },
+      { label: t("Phone number"), value: formData.personalInformation.phoneNumber },
+      { label: t("E-mail address"), value: formData.personalInformation.emailAddress },
     ];
 
     return collectedData;
