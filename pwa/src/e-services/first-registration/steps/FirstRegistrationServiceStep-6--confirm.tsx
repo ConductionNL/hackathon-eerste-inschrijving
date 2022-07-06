@@ -37,9 +37,7 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
       onError: () => {
         setFormSubmitting(false);
       },
-      onSuccess: ({ id }) => {
-        console.log('Zaak ID: ' + id);
-      },
+      onSuccess: () => {},
     }
   );
 
