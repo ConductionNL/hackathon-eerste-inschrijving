@@ -42,7 +42,7 @@ export const nl = {
   "Personal information": "Persoonsgegevens",
   "Family name": "Familienaam",
   "Former family name": "Eerdere familienaam",
-  "Fist name": "Voornaam",
+  "First name": "Voornaam",
   "Date of birth": "Geboortedatum",
   "Place of birth": "Geboorteplaats",
   "Country of birth": "Geboorteland",
