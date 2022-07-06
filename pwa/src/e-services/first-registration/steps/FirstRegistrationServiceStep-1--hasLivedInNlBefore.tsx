@@ -7,6 +7,9 @@ import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 import { FirstRegistrationFormStepsEnum } from "../FirstRegistrationForm";
+import {useFirstRegistration} from "../../../hooks/firstRegistration";
+import {navigate} from "gatsby";
+import {useFirstRegistrationClient} from "../../../hooks/createZaak";
 
 interface HasLivedInNlBeforeFormStepProps {
   setNextStep: (hasLivedInNlBefore: string) => void;

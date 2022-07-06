@@ -3,50 +3,16 @@ import {useMutation} from "react-query";
 import APIService from "../apiService/apiService";
 import APIContext from "../apiService/apiContext";
 
-export const useFirstRegistration = () => {
+export const useFirstRegistrationClient = () => {
   const API: APIService = React.useContext(APIContext);
 
-  const submitFirstRegistration = ({
-     documentType,
-     documentIssueDate,
-     documentExpiryDate,
-     issueByInstancy,
-     foreignPersonalId,
-     surname,
-     previousSurname,
-     firstname,
-     dateOfBirth,
-     birthplace,
-     countryOfBirth,
-     nationality,
-     maritalStatus,
-     gender,
-     phoneNumber,
-     emailAddress,
-   }: any, {onSuccess}: any) =>
-    useMutation<any, Error>(["first-registration"], () => API.FirstRegistrationClient.submitFirstRegistration({
-      documentType,
-      documentIssueDate,
-      documentExpiryDate,
-      issueByInstancy,
-      foreignPersonalId,
-      surname,
-      previousSurname,
-      firstname,
-      dateOfBirth,
-      birthplace,
-      countryOfBirth,
-      nationality,
-      maritalStatus,
-      gender,
-      phoneNumber,
-      emailAddress,
-    }), {
+  const createZaak = ({}: any, {onSuccess}: any) =>
+    useMutation<any, Error>(["first-registration"], () => API.FirstRegistrationClient.createZaak({}), {
       onError: (error) => {
         throw new Error(error.message);
       },
       onSuccess,
     });
 
-  return { submitFirstRegistration };
+  return { createZaak };
 };

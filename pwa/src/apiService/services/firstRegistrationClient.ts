@@ -8,9 +8,8 @@ export default class FirstRegistrationClient {
     this._instance = _instance;
   }
 
-  public createZaak = async ({
-  }: any): Promise<AxiosResponse> => {
-    const { data: result } = await Send(this._instance, "POST", "/api/v1/zaken", {
+  public createZaak = async ({}: any): Promise<AxiosResponse> => {
+    const { data: result } = await Send(this._instance, "POST", "/zaken", {
       "identificatie": "eerste-inschrijving",
       "bronorganisatie": "gemeenteX",
       "omschrijving": "Eerste inschrijving",
@@ -22,55 +21,4 @@ export default class FirstRegistrationClient {
 
     return result;
   }
-
-  public submitFirstRegistration = async ({
-    movingDocument,
-    idDocumentInformation: {
-      documentType,
-      documentNumber,
-      documentIssueDate,
-      documentExpiryDate,
-      documentProvidedBy,
-      foreignIdNumber,
-    },
-    personalInformation: {
-      familyName,
-      formerFamilyName,
-      firstName,
-      dateOfBirth,
-      placeOfBirth,
-      countryOfBirth,
-      nationality,
-      maritalStatus,
-      gender,
-      phoneNumber,
-      emailAddress,
-    }
-  }: any): Promise<AxiosResponse> => {
-    const { data: result } = await Send(this._instance, "POST", "/first-registration", {
-      movingDocument,
-      idDocumentInformation: {
-        documentType,
-        documentNumber,
-        documentIssueDate,
-        documentExpiryDate,
-        documentProvidedBy,
-        foreignIdNumber,
-      },
-      personalInformation: {
-        familyName,
-        formerFamilyName,
-        firstName,
-        dateOfBirth,
-        placeOfBirth,
-        countryOfBirth,
-        nationality,
-        maritalStatus,
-        gender,
-        phoneNumber,
-        emailAddress,
-      }
-    });
-    return result;
-  };
 }
