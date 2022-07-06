@@ -44,7 +44,7 @@ export const CanYouUploadMovingDocumentStep: React.FC<CanYouUploadMovingDocument
   };
 
   return (
-    <FormStepTemplate title={t("Where you recently registered as resident in the Netherlands Antilles?")} setPreviousStep={handleSetPreviousStep}>
+    <FormStepTemplate title={t("Were you recently registered as resident in the Netherlands Antilles?")} setPreviousStep={handleSetPreviousStep}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputFile name="movingDocument" {...{ register, errors }} validation={{ required: true }} />
 

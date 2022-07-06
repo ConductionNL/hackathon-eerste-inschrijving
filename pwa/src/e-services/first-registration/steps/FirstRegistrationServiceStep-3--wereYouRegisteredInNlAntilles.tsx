@@ -43,7 +43,7 @@ export const WereYouRegisteredInNlAntillesStep: React.FC<WereYouRegisteredInNlAn
   };
 
   return (
-    <FormStepTemplate title={t("Where you recently registered as resident in the Netherlands Antilles?")} setPreviousStep={handleSetPreviousStep}>
+    <FormStepTemplate title={t("Were you recently registered as resident in the Netherlands Antilles?")} setPreviousStep={handleSetPreviousStep}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFieldInput>
           <InputRadio name="wereYouRegisteredInNlAntilles" value="1" label={t("Yes")} {...{register, errors}} validation={{ required: true }} />
