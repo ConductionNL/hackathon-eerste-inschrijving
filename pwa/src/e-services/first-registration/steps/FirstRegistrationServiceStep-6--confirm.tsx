@@ -20,8 +20,9 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
   const mutation = firstRegistrationClient.createZaak(
     {},
     {
-      onSuccess: () => {
-        navigate("/my-cases");
+      onSuccess: ({ id }) => {
+        console.log('Zaak ID: ' + id);
+        // navigate("/my-cases");
       },
     }
   );
