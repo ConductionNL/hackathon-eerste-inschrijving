@@ -14,5 +14,13 @@ export const useFirstRegistrationClient = () => {
       onSuccess,
     });
 
-  return { createZaak };
+  const createZaakDocument = ({}: any, {onSuccess}: any) =>
+    useMutation<any, Error>(["first-registration-enkelvoudig-informatie-object"], ({ zaakId, fileList }: any) => API.FirstRegistrationClient.addZaakDocument(zaakId, fileList), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+      onSuccess,
+    });
+
+  return { createZaak, createZaakDocument };
 };
