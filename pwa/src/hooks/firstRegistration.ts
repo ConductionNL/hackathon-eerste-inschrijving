@@ -23,9 +23,11 @@ export const useFirstRegistrationClient = () => {
       onSuccess,
     });
 
-  const createZaakDocument = ({ }: any, { onSuccess }: any) =>
+  const createZaakDocument = ({ }: any, { onSuccess, onError }: any) =>
     useMutation<any, Error>(["first-registration-enkelvoudig-informatie-object"], ({ zaakId, fileList }: any) => API.FirstRegistrationClient.addZaakDocument(zaakId, fileList), {
       onError: (error) => {
+        onError();
+
         throw new Error(error.message);
       },
       onSuccess,
