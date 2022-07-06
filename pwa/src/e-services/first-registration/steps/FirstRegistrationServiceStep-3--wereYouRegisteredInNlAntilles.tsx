@@ -7,12 +7,12 @@ import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 
-interface WhereYouRegisteredInNlAntillesStepProps {
-  setNextStep: (whereYouRegisteredInNlAntilles: string) => void;
+interface WereYouRegisteredInNlAntillesStepProps {
+  setNextStep: (wereYouRegisteredInNlAntilles: string) => void;
   setPreviousStep: () => void;
 }
 
-export const WhereYouRegisteredInNlAntillesStep: React.FC<WhereYouRegisteredInNlAntillesStepProps> = ({ setNextStep, setPreviousStep }) => {
+export const WereYouRegisteredInNlAntillesStep: React.FC<WereYouRegisteredInNlAntillesStepProps> = ({ setNextStep, setPreviousStep }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = React.useContext(FirstRegistrationContext);
 
@@ -25,7 +25,7 @@ export const WhereYouRegisteredInNlAntillesStep: React.FC<WhereYouRegisteredInNl
   } = useForm();
 
   React.useEffect(() => {
-    setValue("whereYouRegisteredInNlAntilles", formData.whereYouRegisteredInNlAntilles);
+    setValue("wereYouRegisteredInNlAntilles", formData.wereYouRegisteredInNlAntilles);
   }, [formData]);
 
   const handleSetPreviousStep = () => {
@@ -35,19 +35,19 @@ export const WhereYouRegisteredInNlAntillesStep: React.FC<WhereYouRegisteredInNl
 
   const onSubmit = (data: any): void => {
     handleSetFormData(data)
-    setNextStep(data.whereYouRegisteredInNlAntilles);
+    setNextStep(data.wereYouRegisteredInNlAntilles);
   };
 
-  const handleSetFormData = ({ whereYouRegisteredInNlAntilles }: any) => {
-    setFormData({ ...formData, whereYouRegisteredInNlAntilles });
+  const handleSetFormData = ({ wereYouRegisteredInNlAntilles }: any) => {
+    setFormData({ ...formData, wereYouRegisteredInNlAntilles });
   };
 
   return (
     <FormStepTemplate title={t("Where you recently registered as resident in the Netherlands Antilles?")} setPreviousStep={handleSetPreviousStep}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFieldInput>
-          <InputRadio name="whereYouRegisteredInNlAntilles" value="1" label={t("Yes")} {...{register, errors}} validation={{ required: true }} />
-          <InputRadio name="whereYouRegisteredInNlAntilles" value="0" label={t("No")} {...{register, errors}} validation={{ required: true }} />
+          <InputRadio name="wereYouRegisteredInNlAntilles" value="1" label={t("Yes")} {...{register, errors}} validation={{ required: true }} />
+          <InputRadio name="wereYouRegisteredInNlAntilles" value="0" label={t("No")} {...{register, errors}} validation={{ required: true }} />
         </FormFieldInput>
 
         <button type="submit">

@@ -4,12 +4,12 @@ import {
   HasLivedInNlUntilFormStep,
  IdDocumentInformationStep, PersonalInformationStep, ConfirmFormStep,
   UntilWhichDateWillYouStayInNlStep,
-  WhereYouRegisteredInNlAntillesStep,
+  WereYouRegisteredInNlAntillesStep,
   CanYouUploadMovingDocumentStep
 } from "./steps";
 import { IFirstRegistrationData, FirstRegistrationServiceProvider, defaultFirstRegistrationData } from "./FirstRegistrationContext";
 
-export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "whereYouRegisteredInNlAntilles" | "canYouUploadMovingDocument" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission" | "endInfoRni";
+export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "wereYouRegisteredInNlAntilles" | "canYouUploadMovingDocument" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission" | "endInfoRni";
 
 export const FirstRegistrationForm: React.FC = () => {
   const [step, setStep] = React.useState<TFirstRegistrationFormServiceSteps>("hasLivedInNlBefore");
@@ -61,14 +61,14 @@ const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormSte
           const date4MonthsFromNow = new Date()
           date4MonthsFromNow.setMonth(date4MonthsFromNow.getMonth() + 4);
 
-          return new Date(untilWhichDateWillYouStayInNl) > date4MonthsFromNow ? setNextStep("whereYouRegisteredInNlAntilles") : setNextStep("endInfoRni")
+          return new Date(untilWhichDateWillYouStayInNl) > date4MonthsFromNow ? setNextStep("wereYouRegisteredInNlAntilles") : setNextStep("endInfoRni")
         }}
         setPreviousStep={setPreviousStep}
       />;
 
-    case "whereYouRegisteredInNlAntilles":
-      return <WhereYouRegisteredInNlAntillesStep
-        setNextStep={(whereYouRegisteredInNlAntilles) => whereYouRegisteredInNlAntilles === "1" ? setNextStep("canYouUploadMovingDocument") : setNextStep("idDocumentInformation")}
+    case "wereYouRegisteredInNlAntilles":
+      return <WereYouRegisteredInNlAntillesStep
+        setNextStep={(wereYouRegisteredInNlAntilles) => wereYouRegisteredInNlAntilles === "1" ? setNextStep("canYouUploadMovingDocument") : setNextStep("idDocumentInformation")}
         setPreviousStep={setPreviousStep}
       />;
 

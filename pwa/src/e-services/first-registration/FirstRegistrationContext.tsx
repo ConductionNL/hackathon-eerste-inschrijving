@@ -4,7 +4,7 @@ export interface IFirstRegistrationData {
   hasLivedInNlBefore: string;
   hasLivedInNlUntil: string;
   untilWhichDateWillYouStayInNl: string;
-  whereYouRegisteredInNlAntilles: string;
+  wereYouRegisteredInNlAntilles: string;
   movingDocument: FileList|undefined;
   idDocumentInformation: {
     documentType: string;
@@ -34,7 +34,7 @@ export const defaultFirstRegistrationData = {
   hasLivedInNlBefore: "",
   hasLivedInNlUntil: "",
   untilWhichDateWillYouStayInNl: "",
-  whereYouRegisteredInNlAntilles: "",
+  wereYouRegisteredInNlAntilles: "",
   movingDocument: undefined,
   idDocumentInformation: {
     documentType: "",
