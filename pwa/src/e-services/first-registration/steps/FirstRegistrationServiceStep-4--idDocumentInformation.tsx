@@ -56,12 +56,12 @@ export const IdDocumentInformationStep: React.FC<IdDocumentInformationStepProps>
           <InputText name="idDocumentInformation.documentNumber" {...{register, errors}} validation={{ required: true }} />
         </FormFieldInput>
         <FormFieldInput>
-          <FormFieldLabel htmlFor="idDocumentInformation.issueDateDocument">{t("Issue date of document")}</FormFieldLabel>
-          <InputDate name="idDocumentInformation.issueDateDocument" {...{ register, errors }} validation={{ required: true }} />
+          <FormFieldLabel htmlFor="idDocumentInformation.documentIssueDate">{t("Issue date of document")}</FormFieldLabel>
+          <InputDate name="idDocumentInformation.documentIssueDate" {...{ register, errors }} validation={{ required: true }} />
         </FormFieldInput>
         <FormFieldInput>
-          <FormFieldLabel htmlFor="idDocumentInformation.validDateDocument">{t("Document is valid until")}</FormFieldLabel>
-          <InputDate name="idDocumentInformation.validDateDocument" {...{ register, errors }} validation={{ required: true }} />
+          <FormFieldLabel htmlFor="idDocumentInformation.documentExpiryDate">{t("Document is valid until")}</FormFieldLabel>
+          <InputDate name="idDocumentInformation.documentExpiryDate" {...{ register, errors }} validation={{ required: true }} />
         </FormFieldInput>
         <FormFieldInput>
           <FormFieldLabel htmlFor="idDocumentInformation.documentProvidedBy">{t("Which instancy provided the document?")}</FormFieldLabel>

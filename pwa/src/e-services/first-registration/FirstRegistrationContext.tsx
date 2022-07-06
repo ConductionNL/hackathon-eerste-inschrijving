@@ -9,8 +9,8 @@ export interface IFirstRegistrationData {
   idDocumentInformation: {
     documentType: string;
     documentNumber: string;
-    issueDateDocument: string;
-    validDateDocument: string;
+    documentIssueDate: string;
+    documentExpiryDate: string;
     documentProvidedBy: string;
     foreignIdNumber: string;
   };
@@ -39,8 +39,8 @@ export const defaultFirstRegistrationData = {
   idDocumentInformation: {
     documentType: "",
     documentNumber: "",
-    issueDateDocument: "",
-    validDateDocument: "",
+    documentIssueDate: "",
+    documentExpiryDate: "",
     documentProvidedBy: "",
     foreignIdNumber: "",
   },
