@@ -15,6 +15,7 @@ interface EndServiceTemplateProps {
   handleSubmit: () => void;
   setPreviousStep: () => void;
   collectedData: ICollectedData[];
+  disableSubmit: boolean;
 }
 
 export const EndServiceTemplate: React.FC<EndServiceTemplateProps> = ({
@@ -22,6 +23,7 @@ export const EndServiceTemplate: React.FC<EndServiceTemplateProps> = ({
   handleSubmit,
   setPreviousStep,
   collectedData,
+  disableSubmit,
 }) => {
   const { t } = useTranslation();
 
@@ -51,7 +53,7 @@ export const EndServiceTemplate: React.FC<EndServiceTemplateProps> = ({
           </Link>
         </div>
 
-        <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={handleSubmit}>
+        <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={handleSubmit} disabled={disableSubmit}>
           {t("Confirm")}
         </Button>
       </div>

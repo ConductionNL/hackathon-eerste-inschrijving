@@ -7,6 +7,7 @@ import {
 } from "../../../templates/templateParts/selfServices/endService/EndServiceTemplate";
 import { navigate } from "gatsby";
 import {useFirstRegistrationClient} from "../../../hooks/firstRegistration";
+import { useState } from "react";
 
 interface MovingStepProps {
   setPreviousStep: () => void;
@@ -16,16 +17,26 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
   const { t } = useTranslation();
   const [formData] = React.useContext(FirstRegistrationContext);
   const firstRegistrationClient = useFirstRegistrationClient();
+  const [isFormSubmitting, setFormSubmitting] = useState(false);
 
   const fileUploadMutation = firstRegistrationClient.createZaakDocument({}, {
+    onError: () => {
+      setFormSubmitting(false);
+    },
     onSuccess: () => {}
   })
   const createZaakEigenschap = firstRegistrationClient.createZaakEigenschap({}, {
+    onError: () => {
+      setFormSubmitting(false);
+    },
     onSuccess: () => {}
   });
   const mutation = firstRegistrationClient.createZaak(
     {},
     {
+      onError: () => {
+        setFormSubmitting(false);
+      },
       onSuccess: ({ id }) => {
         console.log('Zaak ID: ' + id);
       },
@@ -33,6 +44,8 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
   );
 
   const onSubmit = async () => {
+    setFormSubmitting(true);
+
     const { id } = await mutation.mutateAsync();
     if (formData.movingDocument && formData.movingDocument.length > 0) {
       await fileUploadMutation.mutateAsync({zaakId: id, fileList: formData.movingDocument});
@@ -45,6 +58,7 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
       await createZaakEigenschap.mutateAsync({zaakId: id, eigenschap: property, waarde: formData.personalInformation[property]});
     }
 
+    setFormSubmitting(false);
     navigate("/first-registration/success");
   };
 
@@ -93,6 +107,7 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
       title={t("Confirm the first registration form")}
       handleSubmit={onSubmit}
       setPreviousStep={() => setPreviousStep()}
+      disableSubmit={isFormSubmitting}
     />
   );
 };
