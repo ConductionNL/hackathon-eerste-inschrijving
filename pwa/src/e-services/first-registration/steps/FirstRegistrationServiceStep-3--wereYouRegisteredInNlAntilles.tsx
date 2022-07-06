@@ -6,6 +6,7 @@ import { InputRadio } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
+import { FirstRegistrationFormStepsEnum } from "../FirstRegistrationForm";
 
 interface WereYouRegisteredInNlAntillesStepProps {
   setNextStep: (wereYouRegisteredInNlAntilles: string) => void;
@@ -25,7 +26,7 @@ export const WereYouRegisteredInNlAntillesStep: React.FC<WereYouRegisteredInNlAn
   } = useForm();
 
   React.useEffect(() => {
-    setValue("wereYouRegisteredInNlAntilles", formData.wereYouRegisteredInNlAntilles);
+    setValue(FirstRegistrationFormStepsEnum.wereYouRegisteredInNlAntilles, formData.wereYouRegisteredInNlAntilles);
   }, [formData]);
 
   const handleSetPreviousStep = () => {

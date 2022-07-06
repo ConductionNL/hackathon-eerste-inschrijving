@@ -6,6 +6,7 @@ import { InputDate, InputRadio, InputText } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
+import { FirstRegistrationFormStepsEnum } from "../FirstRegistrationForm";
 
 interface IdDocumentInformationStepProps {
   setNextStep: () => void;
@@ -25,7 +26,7 @@ export const IdDocumentInformationStep: React.FC<IdDocumentInformationStepProps>
   } = useForm();
 
   React.useEffect(() => {
-    setValue("idDocumentInformation", formData.idDocumentInformation);
+    setValue(FirstRegistrationFormStepsEnum.idDocumentInformation, formData.idDocumentInformation);
   }, [formData]);
 
   const handleSetPreviousStep = () => {

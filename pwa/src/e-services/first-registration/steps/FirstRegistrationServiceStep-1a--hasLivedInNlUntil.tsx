@@ -6,6 +6,7 @@ import { InputDate } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
+import { FirstRegistrationFormStepsEnum } from "../FirstRegistrationForm";
 
 interface HasLivedInNlUntilFormStepProps {
   setNextStep: (hasLivedInNlUntil: string) => void;
@@ -25,7 +26,7 @@ export const HasLivedInNlUntilFormStep: React.FC<HasLivedInNlUntilFormStepProps>
   } = useForm();
 
   React.useEffect(() => {
-    setValue("hasLivedInNlUntil", formData.hasLivedInNlUntil);
+    setValue(FirstRegistrationFormStepsEnum.hasLivedInNlUntil, formData.hasLivedInNlUntil);
   }, [formData]);
 
   const handleSetPreviousStep = () => {

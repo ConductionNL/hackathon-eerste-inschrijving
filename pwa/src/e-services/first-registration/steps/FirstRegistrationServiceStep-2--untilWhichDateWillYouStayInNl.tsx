@@ -6,6 +6,7 @@ import { InputDate } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
+import { FirstRegistrationFormStepsEnum } from "../FirstRegistrationForm";
 
 interface UntilWhichDateWillYouStayInNlStepProps {
   setNextStep: (untilWhichDateWillYouStayInNl: string) => void;
@@ -25,7 +26,7 @@ export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouSt
   } = useForm();
 
   React.useEffect(() => {
-    setValue("untilWhichDateWillYouStayInNl", formData.untilWhichDateWillYouStayInNl);
+    setValue(FirstRegistrationFormStepsEnum.untilWhichDateWillYouStayInNl, formData.untilWhichDateWillYouStayInNl);
   }, [formData]);
 
   const handleSetPreviousStep = () => {

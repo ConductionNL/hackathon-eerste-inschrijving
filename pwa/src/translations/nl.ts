@@ -60,4 +60,5 @@ export const nl = {
   "Were you recently registered as resident in the Netherlands Antilles?": "Was u laatstelijk als ingezetene ingeschreven op de Nederlandse Antillen?",
   "The process ends here, because this case is handled as an resubmission from abroad, not as first registration": "Het proces eindigt hier, het gaat namelijk om een herbevestiging vanuit het buitenland, niet een eerste inschrijving",
   "The process ends here, more information needs to be provided about registration RNI": "Het proces eindigt hier, er dient meer informatie verstrekt te worden over de inschrijving RNI",
+  "Please upload the moving notice": "Upload het verhuisbericht",
 };

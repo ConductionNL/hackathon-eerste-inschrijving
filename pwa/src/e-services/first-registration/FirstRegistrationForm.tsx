@@ -10,10 +10,23 @@ import {
 import { IFirstRegistrationData, FirstRegistrationServiceProvider, defaultFirstRegistrationData } from "./FirstRegistrationContext";
 import {t} from "i18next";
 
-export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "wereYouRegisteredInNlAntilles" | "canYouUploadMovingDocument" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission" | "endInfoRni";
+export enum FirstRegistrationFormStepsEnum {
+  hasLivedInNlBefore = 'hasLivedInNlBefore',
+  hasLivedInNlUntil = 'hasLivedInNlUntil',
+  untilWhichDateWillYouStayInNl = 'untilWhichDateWillYouStayInNl',
+  wereYouRegisteredInNlAntilles = 'wereYouRegisteredInNlAntilles',
+  canYouUploadMovingDocument = 'canYouUploadMovingDocument',
+  idDocumentInformation = 'idDocumentInformation',
+  personalInformation = 'personalInformation',
+  confirm = 'confirm',
+  endResubmission = 'endResubmission',
+  endInfoRni = 'endInfoRni',
+}
+
+export type TFirstRegistrationFormServiceSteps = FirstRegistrationFormStepsEnum.hasLivedInNlBefore | FirstRegistrationFormStepsEnum.hasLivedInNlUntil | FirstRegistrationFormStepsEnum.untilWhichDateWillYouStayInNl | FirstRegistrationFormStepsEnum.wereYouRegisteredInNlAntilles | FirstRegistrationFormStepsEnum.canYouUploadMovingDocument | FirstRegistrationFormStepsEnum.idDocumentInformation | FirstRegistrationFormStepsEnum.personalInformation | FirstRegistrationFormStepsEnum.confirm | FirstRegistrationFormStepsEnum.endResubmission | FirstRegistrationFormStepsEnum.endInfoRni;
 
 export const FirstRegistrationForm: React.FC = () => {
-  const [step, setStep] = React.useState<TFirstRegistrationFormServiceSteps>("hasLivedInNlBefore");
+  const [step, setStep] = React.useState<TFirstRegistrationFormServiceSteps>(FirstRegistrationFormStepsEnum.hasLivedInNlBefore);
   const [visitedSteps, setVisitedSteps] = React.useState<string[]>([]);
   const [formData, setFormData] = React.useState<IFirstRegistrationData>(defaultFirstRegistrationData);
 
@@ -24,7 +37,7 @@ export const FirstRegistrationForm: React.FC = () => {
   const setPreviousStep = () => {
     const lastVisitedStep = visitedSteps.pop();
 
-    setStep((lastVisitedStep ? lastVisitedStep : "hasLivedInNlBefore") as TFirstRegistrationFormServiceSteps);
+    setStep((lastVisitedStep ? lastVisitedStep : FirstRegistrationFormStepsEnum.hasLivedInNlBefore) as TFirstRegistrationFormServiceSteps);
     setVisitedSteps(visitedSteps.slice(-1));
 
     return lastVisitedStep;
@@ -45,61 +58,61 @@ interface FirstRegistrationServiceFormStepProps {
 
 const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormStepProps> = ({ step, setNextStep, setPreviousStep }) => {
   switch (step) {
-    case "hasLivedInNlBefore":
+    case FirstRegistrationFormStepsEnum.hasLivedInNlBefore:
       return <HasLivedInNlBeforeFormStep setNextStep={(hasLivedInNlBefore) => {
-        setNextStep(hasLivedInNlBefore === "1" ? "hasLivedInNlUntil" : "untilWhichDateWillYouStayInNl");
+        setNextStep(hasLivedInNlBefore === "1" ? FirstRegistrationFormStepsEnum.hasLivedInNlUntil : FirstRegistrationFormStepsEnum.untilWhichDateWillYouStayInNl);
       }} />;
 
-    case "hasLivedInNlUntil":
+    case FirstRegistrationFormStepsEnum.hasLivedInNlUntil:
       return <HasLivedInNlUntilFormStep
-        setNextStep={(hasLivedInNlUntil) => new Date(hasLivedInNlUntil) < new Date('1994-10-01') ? setNextStep("untilWhichDateWillYouStayInNl") : setNextStep("endResubmission")}
+        setNextStep={(hasLivedInNlUntil) => new Date(hasLivedInNlUntil) < new Date('1994-10-01') ? setNextStep(FirstRegistrationFormStepsEnum.untilWhichDateWillYouStayInNl) : setNextStep(FirstRegistrationFormStepsEnum.endResubmission)}
         setPreviousStep={setPreviousStep}
       />;
 
-    case "untilWhichDateWillYouStayInNl":
+    case FirstRegistrationFormStepsEnum.untilWhichDateWillYouStayInNl:
       return <UntilWhichDateWillYouStayInNlStep
         setNextStep={(untilWhichDateWillYouStayInNl) => {
           const date4MonthsFromNow = new Date()
           date4MonthsFromNow.setMonth(date4MonthsFromNow.getMonth() + 4);
 
-          return new Date(untilWhichDateWillYouStayInNl) > date4MonthsFromNow ? setNextStep("wereYouRegisteredInNlAntilles") : setNextStep("endInfoRni")
+          return new Date(untilWhichDateWillYouStayInNl) > date4MonthsFromNow ? setNextStep(FirstRegistrationFormStepsEnum.wereYouRegisteredInNlAntilles) : setNextStep(FirstRegistrationFormStepsEnum.endInfoRni)
         }}
         setPreviousStep={setPreviousStep}
       />;
 
-    case "wereYouRegisteredInNlAntilles":
+    case FirstRegistrationFormStepsEnum.wereYouRegisteredInNlAntilles:
       return <WereYouRegisteredInNlAntillesStep
-        setNextStep={(wereYouRegisteredInNlAntilles) => wereYouRegisteredInNlAntilles === "1" ? setNextStep("canYouUploadMovingDocument") : setNextStep("idDocumentInformation")}
+        setNextStep={(wereYouRegisteredInNlAntilles) => wereYouRegisteredInNlAntilles === "1" ? setNextStep(FirstRegistrationFormStepsEnum.canYouUploadMovingDocument) : setNextStep(FirstRegistrationFormStepsEnum.idDocumentInformation)}
         setPreviousStep={setPreviousStep}
       />;
 
-    case "canYouUploadMovingDocument":
+    case FirstRegistrationFormStepsEnum.canYouUploadMovingDocument:
       return <CanYouUploadMovingDocumentStep
-        setNextStep={() => setNextStep("idDocumentInformation")}
+        setNextStep={() => setNextStep(FirstRegistrationFormStepsEnum.idDocumentInformation)}
         setPreviousStep={setPreviousStep}
       />;
 
-    case "idDocumentInformation":
+    case FirstRegistrationFormStepsEnum.idDocumentInformation:
       return <IdDocumentInformationStep
-        setNextStep={() => setNextStep("personalInformation")}
+        setNextStep={() => setNextStep(FirstRegistrationFormStepsEnum.personalInformation)}
         setPreviousStep={setPreviousStep}
       />;
 
-    case "personalInformation":
+    case FirstRegistrationFormStepsEnum.personalInformation:
       return <PersonalInformationStep
-        setNextStep={() => setNextStep("confirm")}
+        setNextStep={() => setNextStep(FirstRegistrationFormStepsEnum.confirm)}
         setPreviousStep={setPreviousStep}
       />;
 
-    case "confirm":
+    case FirstRegistrationFormStepsEnum.confirm:
       return <ConfirmFormStep
         setPreviousStep={setPreviousStep}
       />;
 
-    case "endResubmission":
+    case FirstRegistrationFormStepsEnum.endResubmission:
       return <>{t("The process ends here, because this case is handled as an resubmission from abroad, not as first registration")}</>;
 
-    case "endInfoRni":
+    case FirstRegistrationFormStepsEnum.endInfoRni:
       return <>{t("The process ends here, more information needs to be provided about registration RNI")}</>;
   }
 };
