@@ -20,6 +20,9 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
   const fileUploadMutation = firstRegistrationClient.createZaakDocument({}, {
     onSuccess: () => {}
   })
+  const createZaakEigenschap = firstRegistrationClient.createZaakEigenschap({}, {
+    onSuccess: () => {}
+  });
   const mutation = firstRegistrationClient.createZaak(
     {},
     {
@@ -33,6 +36,13 @@ export const ConfirmFormStep: React.FC<MovingStepProps> = ({ setPreviousStep }) 
     const { id } = await mutation.mutateAsync();
     if (formData.movingDocument && formData.movingDocument.length > 0) {
       await fileUploadMutation.mutateAsync({zaakId: id, fileList: formData.movingDocument});
+    }
+
+    for (const property in formData.idDocumentInformation) {
+      await createZaakEigenschap.mutateAsync({zaakId: id, eigenschap: property, waarde: formData.idDocumentInformation[property]});
+    }
+    for (const property in formData.personalInformation) {
+      await createZaakEigenschap.mutateAsync({zaakId: id, eigenschap: property, waarde: formData.personalInformation[property]});
     }
 
     navigate("/first-registration/success");

@@ -15,8 +15,8 @@ export const useFirstRegistrationClient = () => {
     }
     );
 
-  const createZaakEigenschap = (zaakId: string, zaak: string, waarde: string, { onSuccess }: any) =>
-    useMutation<any, Error>(["first-registration"], () => API.FirstRegistrationClient.createZaakEigenschap(zaakId, zaak, waarde), {
+  const createZaakEigenschap = ({}: any, { onSuccess }: any) =>
+    useMutation<any, Error>(["first-registration"], ({ zaakId, eigenschap, waarde, }: any) => API.FirstRegistrationClient.createZaakEigenschap(zaakId, eigenschap, waarde), {
       onError: (error) => {
         throw new Error(error.message);
       },

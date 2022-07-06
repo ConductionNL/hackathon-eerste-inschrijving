@@ -22,12 +22,12 @@ export default class FirstRegistrationClient {
     return result;
   }
 
-  public createZaakEigenschap = async (zaakId: string, zaak: string, waarde: string): Promise<AxiosResponse> => {
+  public createZaakEigenschap = async (zaakId: string, eigenschap: string, waarde: string): Promise<AxiosResponse> => {
     const { data: result } = await Send(this._instance, "POST", `/zaken/${zaakId}/zaakeigenschappen`, {
-      "zaak": zaak,
-      "eigenschap": 'http://eigenschap.com',
+      "zaak": 'http://localhost/ZAAK/' + zaakId,
+      "eigenschap": 'http://localhost/EIGENSCHAP/' + eigenschap,
       "waarde": waarde,
-    })
+    });
 
     return result;
   }
