@@ -6,6 +6,7 @@ import { InputDate, InputRadio, InputText } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
+import { FirstRegistrationFormStepsEnum } from "../FirstRegistrationForm";
 
 interface PersonalInformationStepProps {
   setNextStep: () => void;
@@ -25,7 +26,7 @@ export const PersonalInformationStep: React.FC<PersonalInformationStepProps> = (
   } = useForm();
 
   React.useEffect(() => {
-    setValue("personalInformation", formData.personalInformation);
+    setValue(FirstRegistrationFormStepsEnum.personalInformation, formData.personalInformation);
   }, [formData]);
 
   const handleSetPreviousStep = () => {

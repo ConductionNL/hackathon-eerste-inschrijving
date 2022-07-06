@@ -6,6 +6,7 @@ import { InputRadio } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
+import { FirstRegistrationFormStepsEnum } from "../FirstRegistrationForm";
 
 interface HasLivedInNlBeforeFormStepProps {
   setNextStep: (hasLivedInNlBefore: string) => void;
@@ -23,7 +24,7 @@ export const HasLivedInNlBeforeFormStep: React.FC<HasLivedInNlBeforeFormStepProp
   } = useForm();
 
   React.useEffect(() => {
-    setValue("hasLivedInNlBefore", formData.hasLivedInNlBefore);
+    setValue(FirstRegistrationFormStepsEnum.hasLivedInNlBefore, formData.hasLivedInNlBefore);
   }, [formData]);
 
   const onSubmit = (data: any): void => {
