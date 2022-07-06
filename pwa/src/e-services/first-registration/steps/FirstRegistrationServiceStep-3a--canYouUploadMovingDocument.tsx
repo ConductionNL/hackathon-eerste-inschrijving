@@ -19,7 +19,6 @@ export const CanYouUploadMovingDocumentStep: React.FC<CanYouUploadMovingDocument
   const {
     register,
     handleSubmit,
-    setValue,
     getValues,
     formState: { errors },
   } = useForm();
@@ -36,7 +35,6 @@ export const CanYouUploadMovingDocumentStep: React.FC<CanYouUploadMovingDocument
   };
 
   const onSubmit = (data: any): void => {
-    console.log(data);
     handleSetFormData(data);
     setNextStep();
   };

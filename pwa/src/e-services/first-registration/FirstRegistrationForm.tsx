@@ -8,6 +8,7 @@ import {
   CanYouUploadMovingDocumentStep
 } from "./steps";
 import { IFirstRegistrationData, FirstRegistrationServiceProvider, defaultFirstRegistrationData } from "./FirstRegistrationContext";
+import {t} from "i18next";
 
 export type TFirstRegistrationFormServiceSteps = "hasLivedInNlBefore" | "hasLivedInNlUntil" | "untilWhichDateWillYouStayInNl" | "wereYouRegisteredInNlAntilles" | "canYouUploadMovingDocument" | "idDocumentInformation" | "personalInformation" | "confirm" | "endResubmission" | "endInfoRni";
 
@@ -96,9 +97,9 @@ const FirstRegistrationServiceFormStep: React.FC<FirstRegistrationServiceFormSte
       />;
 
     case "endResubmission":
-      return <>Het proces eindigt hier, het gaat namelijk om een herbevestiging vanuit het buitenland, niet een eerste inschrijving</>;
+      return <>{t("The process ends here, because this case is handled as an resubmission from abroad, not as first registration")}</>;
 
     case "endInfoRni":
-      return <>Het proces eindigt hier, er dient meer informatie verstrekt te worden over de inschrijving RNI</>;
+      return <>{t("The process ends here, more information needs to be provided about registration RNI")}</>;
   }
 };
