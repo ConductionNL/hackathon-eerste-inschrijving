@@ -22,6 +22,16 @@ export default class FirstRegistrationClient {
     return result;
   }
 
+  public createZaakEigenschap = async (zaakId: string, zaak: string, waarde: string): Promise<AxiosResponse> => {
+    const { data: result } = await Send(this._instance, "POST", `/zaken/${zaakId}/zaakeigenschappen`, {
+      "zaak": zaak,
+      "eigenschap": 'http://eigenschap.com',
+      "waarde": waarde,
+    })
+
+    return result;
+  }
+
   public addZaakDocument = async (zaakId: string, fileList: FileList): Promise<AxiosResponse> => {
     const file2Base64 = (file:File): Promise<string> => {
       return new Promise<string> ((resolve,reject)=> {
