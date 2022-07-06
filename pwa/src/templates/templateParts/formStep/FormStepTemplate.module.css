@@ -11,3 +11,7 @@
   display: flex;
   margin-inline-start: auto;
 }
+
+.previousStep {
+  display: inline-block;
+}

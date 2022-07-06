@@ -1,18 +1,18 @@
 import * as React from "react";
-import { FormFieldInput, FormFieldLabel, Link } from "@gemeente-denhaag/components-react";
+import { FormFieldInput, Link } from "@gemeente-denhaag/components-react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { InputDate } from "@conduction/components";
+import { InputRadio } from "@conduction/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FormStepTemplate } from "../../../templates/templateParts/formStep/FormStepTemplate";
 import { FirstRegistrationContext } from "../FirstRegistrationContext";
 
-interface UntilWhichDateWillYouStayInNlStepProps {
-  setNextStep: (untilWhichDateWillYouStayInNl: string) => void;
+interface WereYouRegisteredInNlAntillesStepProps {
+  setNextStep: (wereYouRegisteredInNlAntilles: string) => void;
   setPreviousStep: () => void;
 }
 
-export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouStayInNlStepProps> = ({ setNextStep, setPreviousStep }) => {
+export const WereYouRegisteredInNlAntillesStep: React.FC<WereYouRegisteredInNlAntillesStepProps> = ({ setNextStep, setPreviousStep }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = React.useContext(FirstRegistrationContext);
 
@@ -25,7 +25,7 @@ export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouSt
   } = useForm();
 
   React.useEffect(() => {
-    setValue("untilWhichDateWillYouStayInNl", formData.untilWhichDateWillYouStayInNl);
+    setValue("wereYouRegisteredInNlAntilles", formData.wereYouRegisteredInNlAntilles);
   }, [formData]);
 
   const handleSetPreviousStep = () => {
@@ -34,20 +34,20 @@ export const UntilWhichDateWillYouStayInNlStep: React.FC<UntilWhichDateWillYouSt
   };
 
   const onSubmit = (data: any): void => {
-    setFormData({...formData, untilWhichDateWillYouStayInNl: data.untilWhichDateWillYouStayInNl});
-    setNextStep(data.untilWhichDateWillYouStayInNl);
+    handleSetFormData(data)
+    setNextStep(data.wereYouRegisteredInNlAntilles);
   };
 
-  const handleSetFormData = ({ untilWhichDateWillYouStayInNl }: any) => {
-    setFormData({ ...formData, untilWhichDateWillYouStayInNl });
+  const handleSetFormData = ({ wereYouRegisteredInNlAntilles }: any) => {
+    setFormData({ ...formData, wereYouRegisteredInNlAntilles });
   };
 
   return (
-    <FormStepTemplate title={t("Until which date will you live in the Netherlands?")} setPreviousStep={handleSetPreviousStep}>
+    <FormStepTemplate title={t("Were you recently registered as resident in the Netherlands Antilles?")} setPreviousStep={handleSetPreviousStep}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFieldInput>
-          <FormFieldLabel htmlFor="untilWhichDateWillYouStayInNl">{t("Date")}</FormFieldLabel>
-          <InputDate name="untilWhichDateWillYouStayInNl" {...{ register, errors }} validation={{ required: true }} />
+          <InputRadio name="wereYouRegisteredInNlAntilles" value="1" label={t("Yes")} {...{register, errors}} validation={{ required: true }} />
+          <InputRadio name="wereYouRegisteredInNlAntilles" value="0" label={t("No")} {...{register, errors}} validation={{ required: true }} />
         </FormFieldInput>
 
         <button type="submit">
